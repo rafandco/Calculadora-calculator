@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Calculadora - calculator</title>
 </head>
+
 <body>
     <div class="container">
         <div class="calculator">
-            <input type="text" placeholder="0" id="output-screen">
+            <!-- Pantalla de salida -->
+            <input type="text" placeholder="0" id="output-screen" />
+
+            <!-- Botones de operaciones y números -->
             <button onclick="Clear()">Cl</button>
             <button onclick="del()">Del</button>
-            <button onclick="display('%')">%</button>
+            <button onclick="display('%')">mod</button>
             <button onclick="display('/')">/</button>
             <button onclick="display('7')">7</button>
             <button onclick="display('8')">8</button>
@@ -28,33 +33,44 @@
             <button onclick="display('+')">+</button>
             <button onclick="display('.')">.</button>
             <button onclick="display('0')">0</button>
+
+            <!-- Botón de igual -->
             <button onclick="Calculate()" class="equal">=</button>
         </div>
     </div>
 
     <script>
+        // Obtener la referencia al elemento de la pantalla de salida
         let outputScreen = document.getElementById("output-screen");
 
-        function display(num) {
+        // Función para agregar números u operadores a la pantalla
+        const display = (num) => {
+            // Concatenar el número u operador actual al contenido actual de la pantalla
             outputScreen.value += num;
         }
 
-        function Calculate() {
-            try{
+        // Función para evaluar la expresión y mostrar el resultado, lo que estamos haciendo es "usar" la consola de javascript evaluando la expresión y mostrar el resultado
+        const Calculate = () => {
+            try {
+                // Evaluar la expresión y actualizar la pantalla con el resultado
                 outputScreen.value = eval(outputScreen.value);
-            }
-            catch{
-                alert("Invalid")
+            } catch {
+                // Manejar el caso de una expresión inválida
+                alert("Invalid");
             }
         }
 
-        function Clear() {
-                outputScreen.value = "";
+        // Función para borrar el contenido de la pantalla
+        const Clear = () => {
+            outputScreen.value = "";
         }
 
-        function del(){
-                outputScreen.value = outputScreen.value.slice(0,-1);
+        // Función para eliminar el último carácter de la pantalla
+        const del = () => {
+            outputScreen.value = outputScreen.value.slice(0, -1);
         }
+
     </script>
 </body>
+
 </html>
